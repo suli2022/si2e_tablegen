@@ -8,8 +8,6 @@ const tbody = document.querySelector("#tbody");
 
 function generateTbody() {
     gyumolcsok.forEach((gyumolcs) => {
-        console.log(gyumolcs.name)
-
         let tr = document.createElement('tr');
         let tdName = document.createElement('td');
         let tdQuantity = document.createElement('td');
@@ -23,6 +21,16 @@ function generateTbody() {
         tr.append(tdName);
         tr.append(tdQuantity);
         tr.append(tdPrice);
+        tr.append(generateTdDelete());
     });
 }
 generateTbody();
+
+function generateTdDelete() {
+    let td = document.createElement('td');
+    let button = document.createElement('button');
+    button.textContent = "Törlés";
+    button.classList = "btn btn-warning";
+    td.append(button);
+    return td;
+}
