@@ -11,15 +11,8 @@ const editpriceInput = document.querySelector("#editprice");
 
 const saveEditButton = document.querySelector('#saveEditButton');
 
-// const gyumolcsok = [
-//     { id: 1, name: 'szilva', quantity: 35, price: 8 },
-//     { id: 2, name: 'alma', quantity: 45, price: 8.3 },
-//     { id: 3, name: 'körte', quantity: 25, price: 9.5 },
-//     { id: 4, name: 'barack', quantity: 37, price: 12 }
-//   ];
-
 var gyumolcsok = [];
-const host = 'http://localhost:3000/';
+const host = 'http://localhost:8000/';
 
 
 function getFruits() {
@@ -66,18 +59,19 @@ function generateTdDelete(id) {
     button.classList = "btn btn-warning";
     button.addEventListener('click', () => {
         console.log(id);
-        let index = 0;
-        let count = 0;
-        gyumolcsok.forEach((gy) => {
-            if(gy.id == id) {
-                index = count;
-            }
-            count++;
-        });
-        console.log(index);
-        gyumolcsok.splice(index, 1);
-        tbody.textContent = "";
-        generateTbody();
+        deleteFruit(id);
+        // let index = 0;
+        // let count = 0;
+        // gyumolcsok.forEach((gy) => {
+        //     if(gy.id == id) {
+        //         index = count;
+        //     }
+        //     count++;
+        // });
+        // console.log(index);
+        // gyumolcsok.splice(index, 1);
+        // tbody.textContent = "";
+        // generateTbody();
     });
     td.append(button);
     return td;
@@ -120,6 +114,20 @@ function createFruit(fruit) {
     .then(response => response.json())
     .then(result => {
         console.log(result)
+    });
+}
+
+function deleteFruit(id) {
+    let endpoint = 'fruits';
+    let url = host + endpoint + '/' + id;
+    fetch(url, {
+        method: 'delete'
+    })
+    .then(response => response.json())
+    .then(result => {
+        console.log(result);
+        tbody.textContent = "";
+        getFruits();       
     });
 }
 

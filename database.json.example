@@ -29,18 +29,6 @@
       "quantity": 22,
       "price": 3,
       "id": 5
-    },
-    {
-      "name": "bbbbb",
-      "quantity": "30",
-      "price": "3",
-      "id": 6
-    },
-    {
-      "name": "cccc",
-      "quantity": "30",
-      "price": "3",
-      "id": 7
     }
   ]
 }
